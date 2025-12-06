@@ -134,6 +134,8 @@ const ResumeProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const resetResume = useEffectEvent(() => {
+    const savedResume = localStorage.getItem("resume");
+    if (savedResume) setResume(JSON.parse(savedResume));
     setResume(INITIAL_STATE);
     setStep(1);
   });
