@@ -1,65 +1,126 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  ArrowRight,
+  CheckCircle,
+  Sparkles,
+  Download,
+  Printer,
+  Share2,
+} from "lucide-react";
+import { ReactNode } from "react";
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="relative min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Background Image */}
+      <div
+        className="relative bg-cover bg-center"
+        style={{
+          backgroundImage: 'url("/bg.jpg")',
+          height: "50vh",
+        }}
+      >
+        {/* Optional: Add an overlay to darken the image */}
+        <div className="absolute inset-0 bg-linear-to-b from-transparent to-[#010818] z-0"></div>
+
+        <div className="relative z-10 flex items-center justify-center h-full">
+          <div className="text-center">
+            <h1 className="text-white text-5xl font-bold mb-6">
+              Create Your Perfect Resume with AI
+            </h1>
+            <p className="text-white mb-5 max-w-2xl mx-auto">
+              Our AI-powered resume builder helps you craft professional,
+              eye-catching resumes in seconds. It&apos;s free to use and
+              incredibly easy. Stand out from the crowd and land your dream job!
+            </p>
+            <Link href="/resume/create">
+              <Button size="lg" className="text-lg px-8 py-4">
+                Get Started for Free <ArrowRight className="ml-2" />
+              </Button>
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+      </div>
+
+      {/* Features Section */}
+      <section id="features" className="bg-white dark:bg-gray-800 pt-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-20">
+            Why Choose Our Free AI Resume Builder?
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <FeatureCard
+              icon={<Sparkles className="w-12 h-12 text-blue-500" />}
+              title="AI-Powered Content"
+              description="Our AI generates tailored content based on your experience and the job you're applying for, making it very easy to use."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <FeatureCard
+              icon={<CheckCircle className="w-12 h-12 text-green-500" />}
+              title="Create Unlimited Resumes"
+              description="Build as many resumes as you need, completely free. Perfect for applying to multiple jobs or industries."
+            />
+            <FeatureCard
+              icon={<ArrowRight className="w-12 h-12 text-purple-500" />}
+              title="Easy Customization"
+              description="Easily customize your resume with our intuitive interface. It's so simple, anyone can create a professional resume in minutes."
+            />
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Call-to-Action Section */}
+      <section className="bg-blue-600 dark:bg-blue-800 text-white py-20 mt-20">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6">
+            Download, Print, or Share Your Resume in Minutes
+          </h2>
+          <div className="flex justify-center space-x-8 mb-8">
+            <div className="flex flex-col items-center">
+              <Download className="w-12 h-12 mb-2" />
+              <span>Download</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Printer className="w-12 h-12 mb-2" />
+              <span>Print</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Share2 className="w-12 h-12 mb-2" />
+              <span>Share</span>
+            </div>
+          </div>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Join thousands of job seekers who have successfully landed their
+            dream jobs using our free, easy-to-use AI-powered resume builder.
+            Create unlimited resumes and choose how to use them!
+          </p>
+          <Link href="/resume/create">
+            <Button size="lg" variant="secondary" className="text-lg px-8 py-4">
+              Create Your Free Resume Now <ArrowRight className="ml-2" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function FeatureCard({
+  icon,
+  title,
+  description,
+}: {
+  icon: ReactNode;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md">
+      <div className="flex justify-center mb-4">{icon}</div>
+      <h3 className="text-xl font-semibold mb-2 text-center">{title}</h3>
+      <p className="text-gray-600 dark:text-gray-300 text-center">
+        {description}
+      </p>
     </div>
   );
 }
